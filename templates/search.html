@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>This is express delivery page</title>
+</head>
+<body>
+{% if results %}
+<p>查询结果如下：</p>
+{% for result in results %}
+<p>姓名:{{ result["name"] }}; 性别:{{ result["sex"] }}; 生日:{{ result["birthday"] }}; 家乡:{{ result["hometown"] }}; 婚姻状况:{{ result["isMarried"] }}</p>
+{% endfor %}
+{% else %}
+<form action="/search" method="POST">
+<p>姓名:<input type="text" name="name" /></p>
+<p><input type="submit" name="查询" /></p>
+</form>
+{% endif %}
+</body>
+</html>
