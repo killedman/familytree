@@ -77,6 +77,20 @@ class DbUtils:
         finally:
             conn.close()
 
+    def delete(self, table_name,  user_id):
+        user_id = "'" + user_id + "'"
+        conn = self.db_connect()
+        try:
+            with conn.cursor() as cursor:
+                sql = "delete from {0} where id={1}".format(table_name,
+                                                            user_id)
+                print(sql)
+                cursor.execute(sql)
+                conn.commit()
+        finally:
+            conn.close()
+
+
     def update_data(self, table_name, column_key, new_value, user_name):
         new_value = "'" + new_value + "'"
         user_name = "'" + user_name + "'"

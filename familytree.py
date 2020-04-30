@@ -38,15 +38,16 @@ def add():
                     "hometown": hometown,
                     "isMarried": isMarried}
         my_dbutils.insert_data(TABLE_NAME, new_data)
+        return redirect("/")
 
     return render_template("add.html")
 
-@app.route("/delete", methods=["POST", "GET"])
+@app.route("/delete")
 def delete():
-    if request.method == "POST":
-        username = request.form["name"]
-        my_dbutils.delete_data(TABLE_NAME, username)
-    return render_template("delete.html")
+    user_id = request.args.get('id')
+    print("user_id is %s" % user_id)
+    my_dbutils.delete(TABLE_NAME, user_id)
+    return redirect("/")
 
 
 @app.route("/update", methods=["POST", "GET"])
