@@ -64,6 +64,21 @@ class DbUtils:
         finally:
             conn.close()
 
+    def search_by_user_id(self, table_name, user_id):
+        user_id = "'" + user_id + "'"
+        conn = self.db_connect()
+        try:
+            with conn.cursor() as cursor:
+                sql = "SELECT * FROM {0} WHERE id={1};".format(
+                    table_name, user_id
+                )
+                print(sql)
+                cursor.execute(sql)
+                result = cursor.fetchall()
+            return result
+        finally:
+            conn.close()
+
     def delete_data(self, table_name,  user_name):
         user_name = "'" + user_name + "'"
         conn = self.db_connect()
@@ -91,15 +106,15 @@ class DbUtils:
             conn.close()
 
 
-    def update_data(self, table_name, column_key, new_value, user_name):
-        new_value = "'" + new_value + "'"
-        user_name = "'" + user_name + "'"
+    def update_data(self, table_name, new_data, user_id):
         conn = self.db_connect()
         try:
             with conn.cursor() as cursor:
-                sql = "update {0} set {1} = {2} where name = {3}".format(
-                    table_name, column_key, new_value, user_name)
-                cursor.execute(sql)
-                conn.commit()
+                for k,v in new_data.items():
+                    v = '"' + v + '"'
+                    sql = "update {0} set {1}={2} where id={3};".format(
+                    table_name, k, v, user_id)
+                    cursor.execute(sql)
+                    conn.commit()
         finally:
             conn.close()

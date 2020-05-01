@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Index Page</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
 {% if results %}
 <p>所有结果如下：</p>
 {% for result in results %}
-<!--<p>姓名:{{ result["name"] }}; 性别:{{ result["sex"] }}; 生日:{{ result["birthday"] }}; 家乡:{{ result["hometown"] }}; 婚姻状况:{{ result["isMarried"] }}-->
 <p>姓名:{{ result["name"] }}
-    <a href="/update/{{ result['id'] }}">修改</a>
+    <a href="/update?id={{ result['id']}}">修改</a>
     <a href="/delete?id={{ result['id']}}">删除</a>
-    <a href="/detail/{{ result['id']}}">查看详情</a>
+    <a href="/detail?id={{ result['id']}}">查看详情</a>
 </p>
 {% endfor %}
 {% endif %}
-<p><a href="/add">添加</a></p>
-<p><a href="/search">搜索</a></p>
-</body>
-</html>
+{% endblock %}

@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>delete person info</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Delete{% endblock %}
+{% block content %}
 <form action="/delete" method="POST">
     <p>删除信息</p>
     <p>姓名:<input type="text" name="name" /></p>
     <p><input type="submit" name="提交" /></p>
 </form>
-</body>
-</html>
+{% endblock %}

@@ -49,10 +49,10 @@ def delete():
     my_dbutils.delete(TABLE_NAME, user_id)
     return redirect("/")
 
-
 @app.route("/update", methods=["POST", "GET"])
 def update():
     if request.method == "POST":
+        user_id = request.form["id"]
         username = request.form["name"]
         sex = request.form["sex"]
         birthday = request.form["birthday"]
@@ -63,14 +63,14 @@ def update():
                     "birthday": birthday,
                     "hometown": hometown,
                     "isMarried": isMarried}
-        if username:
-            results = my_dbutils.search_data(TABLE_NAME, username)
-            if results:
-                my_dbutils.update_data(TABLE_NAME, "isMarried",
-                                       isMarried, username)
-            else:
-                my_dbutils.insert_data(TABLE_NAME, new_data)
-    return render_template("update.html")
+        my_dbutils.update_data(TABLE_NAME, new_data, user_id)
+        return redirect("/")
+
+    elif request.method == "GET":
+        user_id = request.args.get('id')
+        results = my_dbutils.search_by_user_id(TABLE_NAME, user_id)
+        print(user_id, results)
+        return render_template("update.html", results=results)
 
 
 if __name__ == "__main__":

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>add person info</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Add{% endblock %}
+{% block content %}
 <form action="/add" method="POST">
     <p>增加信息</p>
     <p>姓名:<input type="text" name="name" /></p>
@@ -14,5 +10,4 @@
     <p>婚姻状况:<input type="text" name="isMarried" /></p>
     <p><input type="submit" name="提交" /></p>
 </form>
-</body>
-</html>
+{% endblock %}
