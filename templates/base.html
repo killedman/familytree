@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - FamilyTree</title>
+    {% endblock %}
+</head>
+<body>
+<div id="navi">
+<p><a href="/">首页</a>|<a href="/add">添加</a>|<a href="/search">搜索</a></p>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+<div id="footer">
+    {% block footer %}
+    This site creat by dreampython, using Flask,Jinja2,Mysql,Python3
+    {% endblock %}
+</div>
+</body>
+</html>
