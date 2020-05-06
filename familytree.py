@@ -24,6 +24,12 @@ def show():
             return render_template("search.html", results=results)
     return render_template("search.html")
 
+@app.route("/detail")
+def detail():
+    user_id = request.args.get('id')
+    results = my_dbutils.search_by_user_id(TABLE_NAME, user_id)
+    return render_template("detail.html", results=results)
+
 @app.route("/add", methods=["POST", "GET"])
 def add():
     if request.method == "POST":

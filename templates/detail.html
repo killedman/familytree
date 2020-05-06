@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+{% if results %}
+{% for result in results %}
+<p>姓名:{{ result["name"] }}; 性别:{{ result["sex"] }}; 生日:{{ result["birthday"] }}; 家乡:{{ result["hometown"] }}; 婚姻状况:{{ result["isMarried"] }}</p>
+{% endfor %}
+{% endif %}
+{% endblock %}
