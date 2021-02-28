@@ -1,5 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+this is a familytree
+"""
 
 from flask import Flask, abort, redirect, url_for, render_template, request
 from dbutils import DbUtils
